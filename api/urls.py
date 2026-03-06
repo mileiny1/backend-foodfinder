@@ -10,3 +10,4 @@ urlpatterns = [
    path('food/search/', food_search, name='food_search'),
    path('my-search-history/', my_search_history, name='my_search_history'),
 ]
+
