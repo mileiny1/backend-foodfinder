@@ -14,3 +14,9 @@ def search_places( # main function to search for places using both Google and Ye
         limit: int,    # limit on the number of results to return from each provider
 ) -> List[Dict]:
     p = (provider or settings.PLACES_PROVIDER or "yelp").lower().strip() # determine which provider to use based on the input parameter, settings, or default to "yelp"
+    if p == "yelp":
+        return search_yelp(lat, lng, term= term, radius_m = radius_m, open_now = open_now,price_range = price_range, limit = limit) # if the provider is Yelp, call the search_yelp function with the appropriate parameters and return the results.
+    if p == "google":
+        return search_google(lat, lng, keywords = term, radius_m = radius_m, open_now = open_now, limit = limit) # if the provider is Google, call the search_google function with the appropriate parameters and return the results.
+    
+    raise ValueError("invalid provider. use 'yelp', 'google'.") # if the provider parameter is not valid, raise a ValueError with a message indicating the valid options for the provider.
